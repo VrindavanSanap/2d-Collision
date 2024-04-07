@@ -1,5 +1,5 @@
 ## Collisions in One and Two Dimensions (Markdown)
-
+##(Live)[https://vrindavansanap.github.io/2d-Collision/]
 Collisions are a fundamental concept in physics, where two objects interact over a short period of time. Here, we'll explore the differences between collisions in one dimension (1D) and two dimensions (2D), assuming objects with equal mass.
 
 **1D Collisions**
