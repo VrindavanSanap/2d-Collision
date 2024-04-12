@@ -1,0 +1,49 @@
+body {
+  font-family: monospace;
+  font-size: 20px;
+}
+* {
+  font-weight: lighter;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1 {
+  margin-left: 10px;
+}
+h4 {
+  margin-left: 15px;
+}
+
+canvas {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+#reset_btn {
+  font-family: monospace;
+  font-size: 16px;
+  background-color: #f44336;
+  margin-left: 10px;
+  color: white;
+  padding: 5px 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#reset_btn:hover {
+  background-color: #d32f2f;
+}
+select {
+  font-family: monospace;
+  font-size: 16px;
+  padding: 5px 5px;
+  margin-left: 15px;
+}
+option {
+  font-family: monospace;
+  font-size: 16px;
+}
+p{
+  font-size: 25px;
+  margin-left: 10px;
+}

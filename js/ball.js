@@ -1,5 +1,5 @@
 class Ball {
-    constructor(height, width, radius = 20, x = null, y = null, vx = null, vy = null) {
+    constructor(height, width, radius = 10, x = null, y = null, vx = null, vy = null) {
         this.bounds = createVector(width, height)
         this.radius = radius;
         this.bounds.sub()
@@ -12,43 +12,53 @@ class Ball {
         if (vx) {
 
             this.vel = createVector(vx, vy);
-         }
+        }
 
     }
 
-    update() { 
-        if (this.pos.x > this.bounds.x -this.radius || this.pos.x < this.radius) {
+    update() {
+        this.pos.add(this.vel)
+        https://stackoverflow.com/questions/37713036/freeing-stuck-objects-after-collision
+        if (this.pos.x > this.bounds.x - this.radius) {
+            this.pos.x = this.bounds.x - this.radius
+            this.vel.x *= -1;
+        } else if (this.pos.x < this.radius) {
+            this.pos.x = this.radius
             this.vel.x *= -1;
         }
-        
-        if (this.pos.y > this.bounds.y -this.radius|| this.pos.y < this.radius) {
+        else if (this.pos.y > this.bounds.y - this.radius) { 
+            this.pos.y = this.bounds.y - this.radius
             this.vel.y *= -1;
         }
-        this.pos.add(this.vel)
+        else if (this.pos.y < this.radius) {
+            this.pos.y = this.radius
+            this.vel.y *= -1;
+        }
     }
 
     display() {
         fill(255)
-        stroke(0,0)
+        stroke(0, 0)
         circle(this.pos.x, this.pos.y, this.radius * 2);
     }
     highlight() {
-        fill(255,80,80)
+        fill(255, 80, 80)
         circle(this.pos.x, this.pos.y, this.radius * 2);
     }
     check_collision(other) {
         let dist_ = p5.Vector.dist(other.pos, this.pos)
-        if ( dist_< this.radius + other.radius) {
-            this.highlight()
-            other.highlight()
-            let norm = p5.Vector.sub(this.pos , other.pos)
+        if (dist_ < this.radius + other.radius) {
+            let norm = p5.Vector.sub(this.pos, other.pos)
+
+            // https://stackoverflow.com/questions/15492654/2d-elastic-collisions-sticking-issue
+            this.pos.add(norm.div(2))
+            other.pos.add(norm.div(-2))
+
             norm.normalize()
-            console.log(norm)
-            let this_norm = p5.Vector.dot(this.vel,norm)
-            let other_norm= p5.Vector.dot(other.vel,norm)
-            console.log(this_norm,other_norm)
+            let this_norm = p5.Vector.dot(this.vel, norm)
+            let other_norm = p5.Vector.dot(other.vel, norm)
             let sv = p5.Vector.mult(norm, other_norm - this_norm)
-            this.vel = p5.Vector.add( this.vel, sv);
+            this.vel = p5.Vector.add(this.vel, sv);
             other.vel = p5.Vector.sub(other.vel, sv);
         } else {
 

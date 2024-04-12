@@ -1,8 +1,10 @@
 var balls;
 function setup() {
 
-    createCanvas(400, 400);
-    balls = new Balls(5, width, height)
+    let canvas = createCanvas(400, 400);
+    canvas.parent('canvas');
+
+    balls = new Balls(10, width, height)
 }
 function update() {
 }
