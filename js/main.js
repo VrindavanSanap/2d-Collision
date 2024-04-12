@@ -1,12 +1,19 @@
+var balls;
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-}
 
+    createCanvas(400, 400);
+    balls = new Balls(5, width, height)
+}
+function update() {
+}
 function draw() {
-    background(255);
-    text("put your p5.js code here",10, frameCount % height);
+    background(0);
+
+
+   balls.display(width, height)
+   balls.update()
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(400, 400);
 }
